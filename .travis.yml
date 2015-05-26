@@ -1,0 +1,37 @@
+language: objective-c 
+branches:
+    only:
+        - master
+env:
+    matrix:
+        - PLATFORM="ios"
+        - PLATFORM="android" ANDROID_VERSION="19"
+    global:
+#        - secure GENERATE_SECURE_TOKEN_FOR_CLOUDINARY
+
+matrix:
+    fast_finish: true
+    allow_failures:
+        - env: PLATFORM="android" ANDROID_VERSION="19"
+
+before_install:
+    - export ANDROID_HOME=$PWD/android-sdk-macosx
+    - export ANDROID_SDK=$ANDROID_HOME
+    - export PATH=${PATH}:${ANDROID_HOME}/tools:${ANDROID_HOME}/platform-tools
+
+install:
+    - npm install -g titanium alloy tishadow gulp ktorz/ticalabash
+    - npm install
+
+    - titanium login travisci@appcelerator.com travisci
+    - titanium sdk install latest --no-progress-bars
+
+    - gulp 'install:android_sdk'
+
+before_script:
+    - gulp 'start:emulator'
+    - gulp 'config:tiapp' --test
+
+script: 
+    - gulp 'test:calabash'
+    - gulp 'test:jasmine'
