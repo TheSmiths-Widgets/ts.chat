@@ -1,0 +1,14 @@
+{
+    "--title": "ts.chat 0.1",
+    "--output": "./documentation",
+    "--touch-examples": true,
+    "--no-source": true,
+    "--footer": "TheSmiths - copyright  2015",
+    "--ignore-global": true,
+    "--foreign-types": [
+        "underscore     ~>  http://underscorejs.org/#",
+        "backbone       ~>  http://backbonejs.org/#",
+        "appcelerator   ~>  http://docs.appcelerator.com/titanium/3.0/#!/api/",
+        "thesmiths      ~>  https://thesmiths-widgets.github.io/"
+    ]
+}
