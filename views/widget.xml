@@ -1,3 +1,16 @@
 <Alloy>
-	<Label>I'm the default widget</Label>
+  <ScrollView id="main">
+    <View id="messagesWrapper">
+      <Widget id="loader" src="nl.fokkezb.pullToRefresh" onRelease="_loadOld">
+        <TableView id="messages" onSingletap="_snatchFocus"/>
+      </Widget>
+    </View>
+
+    <View id="typingWrapper">
+      <Label id="separator" />
+      <TextArea id="typingArea" onChange="_resizeTypingArea" />
+      <Button id="send" title="L('send')" onClick="_send" />
+    </View>
+  </ScrollView>
 </Alloy>
+
