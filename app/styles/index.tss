@@ -1,5 +1,9 @@
 ".container": {
-	backgroundColor:"white"
+	backgroundColor:"white",
+}
+
+".container[platform=android]": {
+    windowSoftInputMode: Ti.UI.Android.SOFT_INPUT_STATE_HIDDEN
 }
 
 "Label": {

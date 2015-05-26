@@ -1,0 +1,52 @@
+/***********************  Ti.UI.View */
+".outerBubble": {
+    "height":           Ti.UI.SIZE,
+    "left":             "5dp",
+    "right":            "5dp",
+    "width":            Ti.UI.FILL,
+}
+
+/***********************  Ti.UI.View */
+".bubble": {
+    "borderRadius":     "10",
+    "bottom":           "5dp",
+    "height":           Ti.UI.SIZE,
+    "top":              "5dp",
+    "width":            Ti.UI.SIZE
+}
+".bubbleReceived": {
+    "backgroundColor":  "#1DB7FF",
+    "right":            "0dp"
+}
+".bubbleSent": {
+    "backgroundColor":  "#DDDDDD",
+    "left":             "0dp"
+}
+
+/***********************  Ti.UI.Label */
+".message": {
+    "bottom":           "10dp",
+    "font": {
+        "fontFamily":   "'Helvetica Neue', Helvetica, Arial",
+        "fontSize":     "12dp"
+    },
+    "height":           Ti.UI.SIZE,
+    "left":             "10dp",
+    "right":            "10dp",
+    "top":              "10dp",
+    "width":            Ti.UI.SIZE
+}
+".messageReceived": { "color": "#FFFFFF" }
+".messageSent":     { "color": "#141414" }
+
+/**********************  Ti.UI.Label */
+".date": {
+    "color":            "#888888",
+    "font": {
+        "fontFamily":   "Arial, sans-serif",
+        "fontSize":     "10dp"
+    },
+    "height":           Ti.UI.SIZE,
+    "textAlign":        Ti.UI.TEXT_ALIGNMENT_CENTER,
+    "width":            Ti.UI.FILL
+}

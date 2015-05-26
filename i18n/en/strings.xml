@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <resources>
-    <string name="welcome">Hello World!</string>
+    <string name="send">Send</string>
+    <string name="someMessage">A useful content</string>
+    <string name="someOtherMessage">Another useful content</string>
+    <string name="testMessage">We Are Smiths</string>
 </resources>

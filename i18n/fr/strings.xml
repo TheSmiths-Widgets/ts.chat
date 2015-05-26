@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<resources>
+    <string name="send">Envoyer</string>
+    <string name="someMessage">Un contenu d'un grand interet</string>
+    <string name="someOtherMessage">C'est certain</string>
+    <string name="testMessage">We Are Smiths (Meme en french)</string>
+</resources>

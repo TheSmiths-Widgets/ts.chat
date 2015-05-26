@@ -1,13 +1,15 @@
 {
-    "global": {},
-    "env:development": {},
-    "env:test": {},
-    "env:production": {},
-    "os:android": {},
-    "os:blackberry": {},
-    "os:ios": {},
-    "os:mobileweb": {},
-    "dependencies": {
-        "ts.chat": "1.0"
-    }
+  "global": {},
+  "env:development": {},
+  "env:test": {},
+  "env:production": {},
+  "os:android": {},
+  "os:blackberry": {},
+  "os:ios": {},
+  "os:mobileweb": {},
+  "dependencies": {
+    "ts.chat": "1.0",
+    "ts.factory.chatMessage": "1.0",
+    "nl.fokkezb.pullToRefresh": "2.1.0"
+  }
 }

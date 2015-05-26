@@ -1,5 +1,5 @@
 <Alloy>
 	<Window class="container">
-		<Label id="label" onClick="doClick">L('welcome')</Label>
+        <Widget id="chat" src="ts.chat" />
 	</Window>
 </Alloy>
