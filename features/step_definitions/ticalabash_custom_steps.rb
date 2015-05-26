@@ -10,7 +10,7 @@ Then /^I fill in textarea #([0-9]+) with "(.*?)"$/ do |textareaId, content|
 end
 
 Then /^I scroll up until I see "(.*?)"$/ do |labelText|
-    while !query("view marked: '#{labelText}'").empty? do
+    while query("view marked: '#{labelText}'").empty? do
         scroll('tableView', 'up')
         sleep(STEP_PAUSE)
         screenshot_and_raise("Unable to find the cell marked: \"#{labelText}\"") if query('TiUITableViewCell').empty? 

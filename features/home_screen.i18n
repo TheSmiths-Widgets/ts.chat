@@ -1,10 +1,24 @@
-Feature: Home Screen
-  As an App Developer
-  I want to see an example feature work on a default alloy app
-  So that I can start using TiCalabash quickly
+Feature: Chat is working
+  When the Widget start, we want to see a textfield, a send button and
+  some messages if any.
 
-Scenario: See Home Screen
+Scenario: See Send & Textfield 
     Given I am on the Home Screen
-    Then I should see L('welcome')
+    Then I wait for the L('send') button to appear
+    And I wait to see L('someMessage')
+    And take picture
+
+Scenario: Send a message
+    Given I am on the Home Screen
+    Then I fill in textarea #0 with L('testMessage')
+    And I touch L('send')
+    And I touch on screen 25 from the left and 25 from the top
+    And I wait to see L('testMessage')
+    And take picture
+
+Scenario: Scroll older messages
+    Given I am on the Home Screen
+    Then I scroll up until I see L('someOtherMessage') 
+    And I should not see L('someMessage')
     And take picture
 
