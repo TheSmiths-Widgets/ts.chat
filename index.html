@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>ts.chat 1.0</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <meta name="fragment" content="!">
+
+  
+
+  <link rel="shortcut icon" type="image/ico" href="favicon.ico" />
+  <link rel="stylesheet" href="resources/css/app-b45e0623fa4eb1e1c70a70550106b25a.css" type="text/css" />
+  <link rel="stylesheet" href="styles-6a2c51222b129359149a5b48115b9f23.css" type="text/css" />
+
+  <script type="text/javascript" src="extjs/ext-all.js"></script>
+  <script type="text/javascript" src="data-695128258f9d24585199066051b56810.js"></script>
+
+  <script type="text/javascript" src="app-31307dd847860d30cd701596bf1390da.js"></script>
+
+  
+
+</head>
+<body id="ext-body">
+
+  <div id="loading"><span class="title">ts.chat 1.0</span><span class="logo"></span></div>
+
+  <div id="header-content">ts.chat 1.0</div>
+  <div id='welcome-content' style='display:none'><div class="markdown"><h2>Chat Widget</h2>
+
+<p><a href="http://appcelerator.com/titanium/"><img src="http://www-static.appcelerator.com/badges/titanium-git-badge-sq.png" alt="Appcelerator
+Titanium" /></a>
+<a href="http://appcelerator.com/alloy/"><img src="http://www-static.appcelerator.com/badges/alloy-git-badge-sq.png" alt="Appcelerator
+Alloy" /></a>
+<a href="http://choosealicense.com/licenses/apache-2.0/"><img src="http://img.shields.io/badge/license-Apache%202.0-blue.svg?style=flat" alt="License" /></a></p>
+
+<p>This widget is an example of chat widget where the content is separated from the widget in such a
+way that any kind of model could be used with this widget. The widget uses
+<a href="https://github.com/thesmiths-widgets/ts.messageBuilderFactory">builders</a> to generate views
+corresponding to a message; This builders act as delegates so that the widget can focus its concern
+on displaying correctly those messages together.</p>
+
+<p>Therefore, it handles the succession of messages in a <em>TableView</em> and gives easy ways to :
+- load older messages
+- add new message to the list
+- handle user inputs in a 'responsive' textArea</p>
+
+<p>As a matter of fact, the widget is also a playground for new testing methods and tools. Then, It
+follows a continuous integration process where builds and tests are made in the cloud with
+<a href="https://travis-ci.org">travis</a>.</p>
+
+<p>A detailed documentation may be found here :
+<a href="https://thesmiths-widgets.github.io/ts.chat">documentation</a></p>
+
+<h3>Previews</h3>
+
+<p>Screenshots taken on an iPhone 4s Simulator using the <em>messenger-like</em> builder.</p>
+
+
+
+<div class="previews">
+    ![screenshot1](https://github.com/thesmiths-widgets/ts.chat/blob/doc/images/screenshot1.png)
+    ![screenshot2](https://github.com/thesmiths-widgets/ts.chat/blob/doc/images/screenshot2.png)
+    ![screenshot3](https://github.com/thesmiths-widgets/ts.chat/blob/doc/images/screenshot3.png)
+</div>
+
+
+<h3>How to install it</h3>
+
+<p>Comming on GitTio.</p>
+
+<h3>How to use it</h3>
+
+<h4>Initialization</h4>
+
+<p>First of all, the widget might be initialized once the windows is opened. This could be performed in
+the following way :</p>
+
+<pre><code class="javascript">    $.index.addEventListener('open', function (e) {
+        $.chat.init({
+            messageBuilder: messengerLike,
+        });
+    });
+
+    // ... Do some awesome stuff
+
+    $.index.open();
+</code></pre>
+
+<p>Others parameters might be supplied during the initialisation such as an initial set of messages.
+Please, have a look to <a href="https://thesmiths-widgets.github.io/#!/api/ts.chat-method-init">the following documentation
+page</a> for more info.</p>
+
+<h4>Listen to events</h4>
+
+<p>The widget may trigger two kind of events : <code>load</code> and <code>newmessage</code>. Both event are documented
+<a href="https://thesmiths-widgets.github.io/#!/api/ts.chat-event-load">here</a>.</p>
+
+<p>The first one is fired each time the user is asking for older messages (i.e.: scrolling up); the
+event contains some useful pieces of information such as the last message currently displayed as
+well as callbacks to response to the widget.</p>
+
+<pre><code class="javascript">    $.chat.on('load', function (loadEvent) {
+        // Do some stuff do handle the request ...
+        loadEvent.success(/* someOlderMessages */);
+    });
+</code></pre>
+
+<p>The second one is fired when the user has pressed the <em>send</em> button. The event holds data such as
+the content of the message and the date at which it has been send. Also, like the previous one, it
+offers two callbacks to handle success and error response. As the widget does not know how to create
+a message from a text content, the parent controller is supposed to supply an instance of the new
+message as an argument of the success callback.</p>
+
+<pre><code class="javascript">    $.chat.on('newmessage', function (newMessageEvent) {
+        // Do some stuff to handle the new message
+        newMessageEvent.succcess(/* message */);
+    });
+</code></pre>
+
+<h4>Add new messages to the widget</h4>
+
+<p>It is also possible to manually add new messages to the chat widget (for instance, when a new
+message is sent from an app, it may trigger a specific event to the app of the opposite user...).
+To do such a thing, just use the <code>receive</code> function which handle either a message or an array of
+messages.</p>
+
+<pre><code class="javascript">    $.chat.receive(/* Tons of messages */);
+</code></pre>
+
+<h3>Dependencies</h3>
+
+<h4>Pull To Refresh</h4>
+
+<p>The widget uses the <a href="https://github.com/FokkeZB/nl.fokkezb.pullToRefresh">pullToRefresh</a> widget by <strong>Fokke Zandbergen</strong></p>
+
+<h4>Message Builder</h4>
+
+<p>It also requires you to supply a message builder in order to render views. More info about message
+builders <a href="https://github.com/thesmiths-widgets/ts.messageBuilderFactory">right here</a>.</p>
+
+<h3>TODO</h3>
+
+<ul>
+<li>Give ways to change the style (colors, size, etc. ) from the outside.</li>
+<li>Add a <em>clean</em> function</li>
+</ul>
+
+</div></div>
+            <div id='categories-content' style='display:none'>
+            <div class='section'>
+<h1>Others...</h1>
+<div class='left-column'>
+<h3>Others...</h3>
+<ul class='links'>
+<li><a href="#!/api/chat" rel="chat" class="docClass">chat</a></li>
+</ul>
+</div>
+<div class='middle-column'>
+</div>
+<div class='right-column'>
+</div>
+<div style='clear:both'></div>
+</div>
+          </div>
+
+  
+  
+  <div id='footer-content' style='display: none'>TheSmiths - copyright  2015</div>
+
+  
+
+  <script type="text/javascript">
+  (function(){
+    var protocol = (document.location.protocol === "https:") ? "https:" : "http:";
+    document.write("<link href='"+protocol+"//fonts.googleapis.com/css?family=Exo' rel='stylesheet' type='text/css' />");
+  })();
+  </script>
+
+</body>
+</html>
