@@ -1,8 +1,0 @@
-/********  Ti.UI.TableViewRow */
-".row": {
-    "layout":                   "vertical",
-    "selectedBackgroundColor":  "transparent",
-    "touchEnabled":             false
-}
-".row[platform=android]":   { "backgroundSelectedColor": "transparent" }
-".row[platform=ios]":       { "selectionStyle": Titanium.UI.iPhone.TableViewCellSelectionStyle.NONE }

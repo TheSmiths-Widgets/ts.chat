@@ -57,7 +57,7 @@ function Controller() {
     } ]);
     $.index.addEventListener("open", function() {
         $.chat.init({
-            messageBuilder: Alloy.createWidget("ts.factory.chatMessage").getFactory("messenger_like", {
+            messageBuilder: Alloy.createWidget("ts.messageBuilderFactory").getBuilder("messenger_like", {
                 user: "Author1"
             }),
             messages: conversation.slice(0, 30)

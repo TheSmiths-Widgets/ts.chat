@@ -1,6 +1,6 @@
 function WPATH(s) {
     var index = s.lastIndexOf("/");
-    var path = -1 === index ? "ts.factory.chatMessage/" + s : s.substring(0, index) + "/ts.factory.chatMessage/" + s.substring(index + 1);
+    var path = -1 === index ? "ts.messageBuilderFactory/" + s : s.substring(0, index) + "/ts.messageBuilderFactory/" + s.substring(index + 1);
     return path;
 }
 

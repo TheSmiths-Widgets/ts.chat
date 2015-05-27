@@ -1,6 +1,6 @@
 function WPATH(s) {
     var index = s.lastIndexOf("/");
-    var path = -1 === index ? "ts.factory.chatMessage/" + s : s.substring(0, index) + "/ts.factory.chatMessage/" + s.substring(index + 1);
+    var path = -1 === index ? "ts.messageBuilderFactory/" + s : s.substring(0, index) + "/ts.messageBuilderFactory/" + s.substring(index + 1);
     return path;
 }
 
@@ -14,19 +14,19 @@ function __processArg(obj, key) {
 }
 
 function Controller() {
-    function getFactory(name, args) {
+    function getBuilder(name, args) {
         var builder = Widget.createController(name, args);
         return {
             build: function(message) {
                 var row = Ti.UI.createTableViewRow();
-                row.applyProperties($.styles.row);
+                row.applyProperties($._styles.row);
                 builder.build(row, message);
                 return row;
             }
         };
     }
-    var Widget = new (require("alloy/widget"))("ts.factory.chatMessage");
-    this.__widgetId = "ts.factory.chatMessage";
+    var Widget = new (require("alloy/widget"))("ts.messageBuilderFactory");
+    this.__widgetId = "ts.messageBuilderFactory";
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
     this.__controllerPath = "widget";
     if (arguments[0]) {
@@ -38,15 +38,12 @@ function Controller() {
     var exports = {};
     exports.destroy = function() {};
     _.extend($, $.__views);
-    $.styles = {
+    $._styles = {
         row: $.createStyle({
             classes: [ "row" ]
         })
     };
-    exports.getFactory = getFactory;
-    exports.declareFactory = function() {
-        Ti.API.warn("TODO!");
-    };
+    exports.getBuilder = getBuilder;
     _.extend($, exports);
 }
 
