@@ -38,9 +38,9 @@ Screenshots taken on an iPhone 4s Simulator using the *messenger-like* builder.
     }
 </style>
 <div class="previews">
-    ![screenshot1](screenshot1.png)
-    ![screenshot2](screenshot2.png)
-    ![screenshot3](screenshot3.png)
+    ![screenshot1](https://github.com/thesmiths-widgets/ts.chat/blob/doc/images/screenshot1.png)
+    ![screenshot2](https://github.com/thesmiths-widgets/ts.chat/blob/doc/images/screenshot2.png)
+    ![screenshot3](https://github.com/thesmiths-widgets/ts.chat/blob/doc/images/screenshot3.png)
 </div>
 
 ### How to install it
