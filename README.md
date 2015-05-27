@@ -26,22 +26,9 @@ A detailed documentation may be found here :
 
 ### Previews
 Screenshots taken on an iPhone 4s Simulator using the *messenger-like* builder.
-<style>
-    .previews { 
-        text-align: center;
-        width: 100%;
-    }
-    .previews img {
-        display: inline-block;
-        margin: 0 1%;
-        width: 30%;
-    }
-</style>
-<div class="previews">
-    ![screenshot1](https://github.com/thesmiths-widgets/ts.chat/blob/doc/images/screenshot1.png)
-    ![screenshot2](https://github.com/thesmiths-widgets/ts.chat/blob/doc/images/screenshot2.png)
-    ![screenshot3](https://github.com/thesmiths-widgets/ts.chat/blob/doc/images/screenshot3.png)
-</div>
+![screenshot1](https://github.com/thesmiths-widgets/ts.chat/blob/doc/images/screenshot1.png)
+![screenshot2](https://github.com/thesmiths-widgets/ts.chat/blob/doc/images/screenshot2.png)
+![screenshot3](https://github.com/thesmiths-widgets/ts.chat/blob/doc/images/screenshot3.png)
 
 ### How to install it
 Comming on GitTio.
@@ -119,3 +106,5 @@ builders [right here](https://github.com/thesmiths-widgets/ts.messageBuilderFact
 
 - Give ways to change the style (colors, size, etc. ) from the outside.
 - Add a *clean* function
+
+[![wearesmiths](http://wearesmiths.com/media/logoGitHub.png)](http://wearesmiths.com)
