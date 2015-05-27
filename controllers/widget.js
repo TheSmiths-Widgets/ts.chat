@@ -1,10 +1,30 @@
-/** @class ts.chat */
+/** @class chat 
+ * A simple chat widget.
+ *
+ * @requires nl.fokkezb.pullToRefresh
+ * @requires ts.messageBuilderFactory
+ **/
 
 /* Store some constant properties */
+/** 
+ * @private
+ * @readonly
+ * @property {Object} _NATURE The nature of the message, old or new.
+ */
 $._NATURE = {'OLD': 1, 'NEW': 2};
 
 /* Prepare some other properties */
+
+/**
+ * @private
+ * @property {Object[]} _messages All messages stored by the widget. 
+ */
 $._messages;
+
+/**
+ * @private
+ * @property {Object[]} _rows All rows corresponding to the messages. In reverse order. 
+ */
 $._rows = [];
 $._resizeThreshold = 0;
 
@@ -24,6 +44,9 @@ function init (config) {
     }
 
     /* Retrieve the configuration */
+    if (config.maxTypingHeight && Math.abs(+config.maxTypingHeight) < 1) {
+        config.maxTypingHeight = Ti.Platform.displayCaps.platformHeight * +config.maxTypingHeight;
+    }
     $._config = _.extend({
         batchSize: 10,
         maxTypingHeight: Ti.Platform.displayCaps.platformHeight * 0.25,
