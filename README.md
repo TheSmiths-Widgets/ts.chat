@@ -1,20 +1,44 @@
-# Component boilerstrap by TheSmiths
+## Chat Widget
+This widget is an example of chat widget where the content is separated from the widget in such a
+way that any kind of model could be used with this widget. The widget uses
+[builders](https://github.com/thesmiths-widgets/ts.messageBuilderFactory) to generate views
+corresponding to a message; This builders act as delegates so that the widget can focus its concern
+on displaying correctly those messages together.
+
+Therefore, it handles the succession of messages in a *TableView* and gives easy ways to : 
+- load older messages
+- add new message to the list
+- handle user inputs in a 'responsive' textArea
+
+As a matter of fact, the widget is also a playground for new testing methods and tools. Then, It
+follows a continuous integration process where builds and tests are made in the cloud with
+[travis](https://travis-ci.org).
+
+A detailed documentation may be found here :
+[documentation](https://thesmiths-widgets.github.io/ts.chat)
+
+### Previews
+Screenshots taken on an iPhone 4s Simulator using the *messenger-like* builder.
+<style>
+    .preview { 
+        text-align: center;
+        width: 100%;
+    }
+    .preview img {
+        display: inline-block;
+        margin: 0 1%;
+        width: 30%;
+    }
+</style>
+<div class="preview">
+    ![screenshot1](screenshot1.png)
+    ![screenshot2](screenshot2.png)
+    ![screenshot3](screenshot3.png)
+</div>
+
+### How to install it
+Comming on GitTio.
+
+### How to use it
 
 
-Specifications for the chat :
-
-- A chat is an ordered set of messages, ordered by post date Desc
-- A message is an object with at least a content string of a given size (150 characters for exemple, or unlimited).
-- A message can have supplementary options / attributes.
-- The widget should handle predefined options 'date' and 'author' in a particular way. 
-- Other options are just appended at the end in the form key / value 
-
-- Model might supply methods to retrieve and store messages :
-    - fetchNext (options)
-        options:
-            start {int} <optional> If supplied, should be the index of the first message
-            since {Date} <optional> If supplied, the index of the first message since the
-            supplied date
-            number {int} <optional> If supplied, return at least number message. Default to idc
-    - add (message) 
-        message {Message} The message to add 
