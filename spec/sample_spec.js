@@ -22,7 +22,7 @@ for (var i = 0; i < options.nbMessages; i++) {
 }
 
 /* We'll also need a message builder */
-var messageBuilder = Alloy.createWidget('ts.factory.chatMessage').getFactory('messenger_like', {
+var messageBuilder = Alloy.createWidget('ts.messageBuilderFactory').getBuilder('messenger_like', {
     user: "Author1"
 });
 
