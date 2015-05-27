@@ -5,13 +5,14 @@
 	"author": "The Smiths [Matthias Benkort]",
 	"version": "1.0",
 	"copyright":"Copyright (c) 2015",
-	"license":"Public Domain",
+	"license":"Apache",
 	"min-alloy-version": "1.0",
 	"min-titanium-version":"2.1",
 	"tags":"chat, messenger, thesmiths",
 	"platforms":"android,blackberry,ios,mobileweb",
     "dependencies": {
-        "nl.fokkezb.pullToRefresh": "^2.1.0"
+        "nl.fokkezb.pullToRefresh": "^2.1.0",
+        "ts.messageBuilderFactory": "^1.0.0"
     },
     "modules": {
         "com.rkam.swiperefreshlayout": "*"
