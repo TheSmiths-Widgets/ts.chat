@@ -1,0 +1,13 @@
+{
+	"id": "ts.messageBuilderFactory",
+	"name": "ts.messageBuilderFactory",
+	"description" : "Generate delegates that build message views for ts.chat widget",
+	"author": "The Smiths [Matthias Benkort]",
+	"version": "1.0",
+	"copyright":"Copyright (c) 2012",
+	"license":"Public Domain",
+	"min-alloy-version": "1.0",
+	"min-titanium-version":"2.1",
+	"tags":"chat, factory, builder, message, delegate, thesmiths",
+	"platforms":"android,blackberry,ios,mobileweb"
+}
