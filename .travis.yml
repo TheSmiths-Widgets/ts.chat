@@ -7,7 +7,7 @@ env:
         - PLATFORM="ios"
         - PLATFORM="android" ANDROID_VERSION="19"
     global:
-#        - secure GENERATE_SECURE_TOKEN_FOR_CLOUDINARY
+        - secure "RXyW-PlQrhN_6H8pAEFylQ"
 
 matrix:
     fast_finish: true
