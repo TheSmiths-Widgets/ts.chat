@@ -1,8 +1,9 @@
 {
-    "--title": "ts.chat 0.1",
+    "--title": "ts.chat 1.0",
     "--output": "./documentation",
     "--touch-examples": true,
     "--no-source": true,
+    "--welcome": "./README.md",
     "--footer": "TheSmiths - copyright  2015",
     "--ignore-global": true,
     "--foreign-types": [
