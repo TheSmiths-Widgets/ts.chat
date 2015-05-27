@@ -26,9 +26,7 @@ A detailed documentation may be found here :
 
 ### Previews
 Screenshots taken on an iPhone 4s Simulator using the *messenger-like* builder.
-![screenshot1](https://github.com/thesmiths-widgets/ts.chat/blob/doc/images/screenshot1.png)
-![screenshot2](https://github.com/thesmiths-widgets/ts.chat/blob/doc/images/screenshot2.png)
-![screenshot3](https://github.com/thesmiths-widgets/ts.chat/blob/doc/images/screenshot3.png)
+![screenshots](https://github.com/thesmiths-widgets/ts.chat/blob/doc/images/screenshots.png)
 
 ### How to install it
 Comming on GitTio.
