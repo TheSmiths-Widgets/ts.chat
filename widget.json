@@ -2,12 +2,19 @@
 	"id": "ts.chat",
 	"name": "ts.chat",
 	"description" : "",
-	"author": "",
+	"author": "The Smiths [Matthias Benkort]",
 	"version": "1.0",
-	"copyright":"Copyright (c) 2012",
-	"license":"Public Domain",
+	"copyright":"Copyright (c) 2015",
+	"license":"Apache",
 	"min-alloy-version": "1.0",
 	"min-titanium-version":"2.1",
-	"tags":"",
-	"platforms":"android,blackberry,ios,mobileweb"
+	"tags":"chat, messenger, thesmiths",
+	"platforms":"android,blackberry,ios,mobileweb",
+    "dependencies": {
+        "nl.fokkezb.pullToRefresh": "^2.1.0",
+        "ts.messageBuilderFactory": "^1.0.0"
+    },
+    "modules": {
+        "com.rkam.swiperefreshlayout": "*"
+    }
 }
