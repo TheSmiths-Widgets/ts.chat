@@ -1,8 +1,30 @@
+/** @class chat 
+ * A simple chat widget.
+ *
+ * @requires nl.fokkezb.pullToRefresh
+ * @requires ts.messageBuilderFactory
+ **/
+
 /* Store some constant properties */
+/** 
+ * @private
+ * @readonly
+ * @property {Object} _NATURE The nature of the message, old or new.
+ */
 $._NATURE = {'OLD': 1, 'NEW': 2};
 
 /* Prepare some other properties */
+
+/**
+ * @private
+ * @property {Object[]} _messages All messages stored by the widget. 
+ */
 $._messages;
+
+/**
+ * @private
+ * @property {Object[]} _rows All rows corresponding to the messages. In reverse order. 
+ */
 $._rows = [];
 $._resizeThreshold = 0;
 
@@ -13,7 +35,7 @@ $._resizeThreshold = 0;
  * @param {Number} config.batchSize How many message should be ask for each load
  * @param {Number} config.maxTypingHeight The max size of the typing area, if decimal less than 1, a
  *      corresponding percentage of the screen size will be used.
- * @param {thesmiths: ts.messagebuilder#!/api/MessageBuilder MessageBuilder} config.messageBuilder Used to build 
+ * @param {thesmiths: ts.messageBuilderFactory#!/api/builders.MessageBuilder MessageBuilder} config.messageBuilder Used to build every message view. 
  * @param {Object[]} config.messages Initial set of messages
  */
 function init (config) {
@@ -22,6 +44,9 @@ function init (config) {
     }
 
     /* Retrieve the configuration */
+    if (config.maxTypingHeight && Math.abs(+config.maxTypingHeight) < 1) {
+        config.maxTypingHeight = Ti.Platform.displayCaps.platformHeight * +config.maxTypingHeight;
+    }
     $._config = _.extend({
         batchSize: 10,
         maxTypingHeight: Ti.Platform.displayCaps.platformHeight * 0.25,
@@ -47,9 +72,9 @@ function init (config) {
 /**
  * @method getOldest
  * Retrieve the oldest message and its corresponding row stored in the widget.
- * @return {object} The required data
- * @return {object} message The required message
- * @return {appcelerator: TableViewRow} row The corresponding row
+ * @return {Object} The required data
+ * @return {Object} message The required message
+ * @return {appcelerator: Titanium.UI.TableViewRow TableViewRow} row The corresponding row
  */
 function getOldest() {
     return {
@@ -61,9 +86,9 @@ function getOldest() {
 /**
  * @method getMostRecent
  * Retrieve the most recent message and its corresponding row stored in the widget
- * @return {object} The required data 
- * @return {object} message The required message
- * @return {appcelerator: TableViewRow} row The corresponding row
+ * @return {Object} The required data 
+ * @return {Object} message The required message
+ * @return {appcelerator: Titanium.UI.TableViewRow TableViewRow} row The corresponding row
  */
 function getMostRecent() {
     return {
@@ -75,7 +100,7 @@ function getMostRecent() {
 /**
  * @method receive
  * Receive messages from the outside.
- * @param {object[] | object} messages A new message or several new messages to add
+ * @param {Object[] | Object} messages A new message or several new messages to add
  */
 function receive (messages) {
     $.messages.appendRow(_buildMessages($._NATURE.NEW, _.flatten([messages])));
@@ -85,10 +110,10 @@ function receive (messages) {
 /** @private
  * @method _buildMessages
  * Build views corresponding to the given messages
- * @param {int} nature The nature of the message (old or new)
+ * @param {Number} nature The nature of the message (old or new)
  * @param {Array} [messages] Messages to add. If no message are supplied, all the existing one
  * will be used to re-generate the views.
- * @return {appcelerator: TableVie} The corresponding TableViewRows that have been generated
+ * @return {appcelerator: Titanium.UI.TableViewRow TableViewRow[]} The corresponding TableViewRows that have been generated
  */
 function _buildMessages (nature, messages) {
     var row, rows, template;
@@ -129,19 +154,23 @@ function _resizeTypingArea (changeEvent) {
 }
 
 
-/**
+/** 
+ * @private
+ * @method _loadOld
  * Listener that handle a refresh / load event triggered when the user is scrolling to get older
  * messages.
  * @param {Object} refreshEvent The event comming from nl.fokkezb.pullToRefresh widget
+ * @fires load
  * */
 function _loadOld (refreshEvent) {
     /**
      * Triggered when the user request older message
      * @event load
-     *      @attr {Number} number The number of message requested by the widget
-     *      @attr {Object} lastMessage The oldest message owned by the widget
-     *      @attr {Function} success Call on success to transmit the requested bunch of messages
-     *      @attr {Function} error Call one error to inform the widget that something went wrong
+     * @param {Number} number The number of message requested by the widget
+     * @param {Object} lastMessage The oldest message owned by the widget
+     * @param {Function} success Call on success to transmit the requested bunch of messages
+     * @param {Object[]} success.messages The requested messages
+     * @param {Function} error Call one error to inform the widget that something went wrong
      */
     var loadEvent = {
         number: $._config.batchSize,
@@ -158,12 +187,29 @@ function _loadOld (refreshEvent) {
     $.trigger('load', loadEvent);
 };
 
+/**
+ * @private
+ * @method _send
+ * Listener of the send button. Trigger a 'newMessage' event.
+ * @param {appcelerator: Titanium.UI.Button-event-click Button-event-click} clickEvent The corresponding event
+ * @fires newmessage
+ */
 function _send (clickEvent) {
     $.send.touchEnabled = false;
+
+    /**
+     * Triggered when the user send a message
+     * @event newmessage
+     * @param {Object} message The message entered
+     * @param {Date} date The date at which it has been send
+     * @param {Function} success Callback to call once the message has been successfully handled
+     * @param {Object} success.message The sent message, potentially updated with some data
+     * @param {Function} error Callback to call if an error occured
+     * @param {String} error.errorMessage The error message
+     */
     var newmessageEvent = {
         message: $.typingArea.value,
         date: new Date,
-        author: $._config.user,
         success: function (message) {
             receive([message]);
             $.typingArea.value = "";
@@ -178,11 +224,18 @@ function _send (clickEvent) {
     $.trigger('newmessage', newmessageEvent);
 }
 
+/**
+ * @private
+ * @method _snatchFocus
+ * Listener that handle clicks on the tableview. It removes the focus on the typing area. 
+ * @param {appcelerator: Titanium.UI.Button-event-click} clickEvent The corresponding event
+ */
 function _snatchFocus(clickEvent) {
     $.typingArea.blur();
 }
 
-
+/* Here are some workaround on ios and android to handle a nice display of both the typing area and
+ * the messages in the tableview */
 (function fixes () {
     /* If we want things to work well, we need to know the typingWrapper's size available after layout */
     $.typingWrapper.addEventListener('postlayout', function postlayoutListener () {
@@ -207,6 +260,13 @@ function _snatchFocus(clickEvent) {
         });
     }
 })();
+
+/** 
+ * @method loadOld
+ * Manually trigger the loading of older messages.
+ *
+ * @fires load
+ * */
 
 /* TODO Cleaning function */
 
