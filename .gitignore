@@ -1,5 +1,6 @@
 # Created by https://www.gitignore.io
 .DS_Store
+Resources/
 
 ### TestApp ###
 app/widgets/
