@@ -41,7 +41,7 @@ $.chat.on('load', function (loadEvent) {
 $.chat.on('newmessage', function (newMessageEvent) {
     var message = new Backbone.Model({
         content: newMessageEvent.message,
-        author: newMessageEvent.author,
+        author: "Author1",
         date: newMessageEvent.date
     });
     conversation.add(message);
