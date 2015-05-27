@@ -35,7 +35,7 @@ $._resizeThreshold = 0;
  * @param {Number} config.batchSize How many message should be ask for each load
  * @param {Number} config.maxTypingHeight The max size of the typing area, if decimal less than 1, a
  *      corresponding percentage of the screen size will be used.
- * @param {thesmiths: ts.messagebuilder#!/api/MessageBuilder MessageBuilder} config.messageBuilder Used to build 
+ * @param {thesmiths: ts.messageBuilderFactory#!/api/builders.MessageBuilder MessageBuilder} config.messageBuilder Used to build every message view. 
  * @param {Object[]} config.messages Initial set of messages
  */
 function init (config) {
@@ -74,7 +74,7 @@ function init (config) {
  * Retrieve the oldest message and its corresponding row stored in the widget.
  * @return {Object} The required data
  * @return {Object} message The required message
- * @return {appcelerator: TableViewRow} row The corresponding row
+ * @return {appcelerator: Titanium.UI.TableViewRow TableViewRow} row The corresponding row
  */
 function getOldest() {
     return {
@@ -88,7 +88,7 @@ function getOldest() {
  * Retrieve the most recent message and its corresponding row stored in the widget
  * @return {Object} The required data 
  * @return {Object} message The required message
- * @return {appcelerator: TableViewRow} row The corresponding row
+ * @return {appcelerator: Titanium.UI.TableViewRow TableViewRow} row The corresponding row
  */
 function getMostRecent() {
     return {
@@ -113,7 +113,7 @@ function receive (messages) {
  * @param {Number} nature The nature of the message (old or new)
  * @param {Array} [messages] Messages to add. If no message are supplied, all the existing one
  * will be used to re-generate the views.
- * @return {appcelerator: TableView} The corresponding TableViewRows that have been generated
+ * @return {appcelerator: Titanium.UI.TableViewRow TableViewRow[]} The corresponding TableViewRows that have been generated
  */
 function _buildMessages (nature, messages) {
     var row, rows, template;
@@ -188,9 +188,10 @@ function _loadOld (refreshEvent) {
 };
 
 /**
- * @private _send
+ * @private
+ * @method _send
  * Listener of the send button. Trigger a 'newMessage' event.
- * @param {appcelerator: Titanium.UI.Button-event-click} clickEvent The corresponding event
+ * @param {appcelerator: Titanium.UI.Button-event-click Button-event-click} clickEvent The corresponding event
  * @fires newmessage
  */
 function _send (clickEvent) {
@@ -259,6 +260,13 @@ function _snatchFocus(clickEvent) {
         });
     }
 })();
+
+/** 
+ * @method loadOld
+ * Manually trigger the loading of older messages.
+ *
+ * @fires load
+ * */
 
 /* TODO Cleaning function */
 
