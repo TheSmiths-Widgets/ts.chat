@@ -6,7 +6,7 @@ module.exports = function (gulp, plugins) {
 
 
     gulp.task('test:calabash', ['build:calabash'], function (done) {
-        var calabash = plugins.spawn('ti', ['calabash', '-p', process.env.PLATFORM, '-l', 'en']),
+        var calabash = plugins.spawn('ti', ['calabash', '-p', process.env.PLATFORM, '-l', 'en']).stdout.pipe(process.stdout),
             failure = false,
             waitForPrint = true;
 
