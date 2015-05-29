@@ -49,7 +49,7 @@ module.exports = function (gulp, plugins) {
 
                         process.env['TARGET'] = result['ti:app'].name[0];
                     });
-                    plugins.exec('ti build -p ' + process.env.PLATFORM + ' --log-level warn --build-only', done);
+                    plugins.exec('ti build -p ' + process.env.PLATFORM + ' --log-level warn --build-only', done).stdout.pipe(process.stdout);
                 }
             };
             var instr_process = plugins.exec('instruments -s devices');

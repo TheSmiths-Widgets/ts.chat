@@ -10,6 +10,7 @@ module.exports = function (gulp, plugins) {
             failure = false,
             waitForPrint = true;
 
+        calabash.stdout.pipe(process.stdout);
         calabash.stdout.on('data', function (data) {
             waitForPrint = waitForPrint && data.toString().match(/^Feature:/m) === null;
             if (!waitForPrint) process.stdout.write(data);
