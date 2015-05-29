@@ -1,9 +1,10 @@
 module.exports = function (gulp, plugins) {
     /****** Config Tasks ******/
     gulp.task('config:tiapp', function (done) {
-        var target = plugins.utils.env.test && 'test' || plugins.utils.env.production && 'production' || 'development';
+        var target = plugins.utils.env.test && 'test' || plugins.utils.env.production && 'production' || 'development',
+            content = plugins.fs.readFileSync('tiapp.xml');
 
-        (new plugins.xml2js.Parser()).parseString(plugins.fs.readFileSync('tiapp.xml'), function (err, result) {
+        (new plugins.xml2js.Parser()).parseString(content, function (err, result) {
             if (err) return plugins.utils.abort(err.message, done);
 
             plugins._.each(
@@ -32,11 +33,21 @@ module.exports = function (gulp, plugins) {
                     }
                 }
             );
+            
+            /* Special workaround for ios plist ... BEST ARCHITECTURE IDEA EVER - thanks */
+            result["ti:app"].ios[0].plist = [];
+
+            /* Generate the corresponding xml */
             var xml = (new plugins.xml2js.Builder()).buildObject(result);
 
+            /* plist .......... */
+            var plist = content.toString().match(/<plist>([\s\S]+)<\/plist>/)[1].replace(/\t/g, "  ");
+            xml = xml.replace("<ios/>", "<ios>\n    <plist>" + plist + "</plist>\n  </ios>");
+
             /* Root appear sometimes ? */
-            if (xml.match(/<root>/) !== null)
+            if (xml.match(/<root>/) !== null) {
                 xml = xml.replace('<root>\n','').replace('\n</root>', '').replace(/\n\s\s/g, '\n');
+            }
             plugins.fs.writeFile('tiapp.xml', xml, done);
         });;
     });
