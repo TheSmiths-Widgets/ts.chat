@@ -5,8 +5,7 @@ module.exports = function (gulp, plugins) {
 
         /* Start TiShadow Server */
         plugins.exec('tishadow server').stdout.on('data', function (data) {
-            //if (data.match(/\[INFO\]/) === null) process.stdout.write(data);
-            process.stdout.write(data);
+            if (data.match(/\[INFO\]/) === null) process.stdout.write(data);
 
             /* Watch for the server starts */
             var ip = data.match(/\[DEBUG\] connect to ((\d+\.?){4}):\d+/);
@@ -50,7 +49,7 @@ module.exports = function (gulp, plugins) {
 
                         process.env['TARGET'] = result['ti:app'].name[0];
                     });
-                    plugins.exec('ti build -p ' + process.env.PLATFORM + ' --log-level warn --build-only', done).stdout.pipe(process.stdout);
+                    plugins.exec('ti build -p ' + process.env.PLATFORM + ' --log-level warn --build-only', done);
                 }
             };
             var instr_process = plugins.exec('instruments -s devices');
