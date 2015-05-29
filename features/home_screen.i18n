@@ -10,7 +10,8 @@ Scenario: See Send & Textfield
 
 Scenario: Send a message
     Given I am on the Home Screen
-    Then I fill in textarea #0 with L('testMessage')
+    Then I wait
+    And I fill in textarea #0 with L('testMessage')
     And I touch L('send')
     And I touch on screen 25 from the left and 25 from the top
     And I wait to see L('testMessage')
@@ -18,7 +19,8 @@ Scenario: Send a message
 
 Scenario: Scroll older messages
     Given I am on the Home Screen
-    Then I scroll up until I see L('someOtherMessage') 
+    Then I wait
+    And I scroll up until I see L('someOtherMessage') 
     And I should not see L('someMessage')
     And take picture
 
