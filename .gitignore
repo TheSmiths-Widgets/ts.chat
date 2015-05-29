@@ -2,9 +2,6 @@
 .DS_Store
 Resources/
 
-### TestApp ###
-app/widgets/
-
 ### Emacs ###
 # -*- mode: gitignore; -*-
 *~
