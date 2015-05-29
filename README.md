@@ -51,11 +51,11 @@ the following way :
 
 Others parameters might be supplied during the initialisation such as an initial set of messages.
 Please, have a look to [the following documentation
-page](https://thesmiths-widgets.github.io/#!/api/ts.chat-method-init) for more info.
+page](https://thesmiths-widgets.github.io/ts.chat/#!/api/chat-method-init) for more info.
 
 #### Listen to events 
 The widget may trigger two kind of events : `load` and `newmessage`. Both event are documented
-[here](https://thesmiths-widgets.github.io/#!/api/ts.chat-event-load). 
+[here](https://thesmiths-widgets.github.io/ts.chat/#!/api/chat-event-load). 
 
 The first one is fired each time the user is asking for older messages (i.e.: scrolling up); the
 event contains some useful pieces of information such as the last message currently displayed as
