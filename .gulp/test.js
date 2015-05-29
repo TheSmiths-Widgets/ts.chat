@@ -48,6 +48,11 @@ module.exports = function (gulp, plugins) {
     		            uploadDone();
                 }, { folder: tag, use_filename: true });
             });
+
+            if (screenshots.length === 0) {
+                plugins.utils.clean_env();
+                done();
+            }
         });
     });
 };
