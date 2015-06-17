@@ -77,7 +77,7 @@ message as an argument of the success callback.
 ```javascript
     $.chat.on('newmessage', function (newMessageEvent) {
         // Do some stuff to handle the new message
-        newMessageEvent.succcess(/* message */);
+        newMessageEvent.success(/* message */);
     });
 ```
 
